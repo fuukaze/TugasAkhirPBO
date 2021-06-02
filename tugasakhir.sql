@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 02, 2021 at 09:28 AM
+-- Generation Time: Jun 02, 2021 at 09:35 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.2
 
@@ -97,6 +97,19 @@ CREATE TABLE `montir` (
 INSERT INTO `montir` (`id_montir`, `nama_montir`, `skill`) VALUES
 (1, 'fuu', 'unlimited repair between 7AM - 12PM');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `nota`
+--
+
+CREATE TABLE `nota` (
+  `id_nota` int(11) NOT NULL,
+  `id_antri` int(11) NOT NULL,
+  `id_data` int(11) NOT NULL,
+  `id_login` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 --
 -- Indexes for dumped tables
 --
@@ -125,6 +138,15 @@ ALTER TABLE `login`
 --
 ALTER TABLE `montir`
   ADD PRIMARY KEY (`id_montir`);
+
+--
+-- Indexes for table `nota`
+--
+ALTER TABLE `nota`
+  ADD PRIMARY KEY (`id_nota`),
+  ADD KEY `id_antrian` (`id_antri`),
+  ADD KEY `id_biodata` (`id_data`),
+  ADD KEY `id_login` (`id_login`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
