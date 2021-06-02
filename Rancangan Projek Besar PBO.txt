@@ -1,0 +1,18 @@
+- membuat formulir data diri customer 
+( nama, alamat, no, tipe mobil )
+
+- membuat formulir keluhan mobil / service 
+( keluhan service, rekomendasi service, estimasi waktu )
+
+- menampilkan biodata montir yang menangani 
+(nama, no, keahlian khusus, lulusan )
+
+- memberi nomer antrian customer 
+
+- memberikan pilihan ingin menunggu atau tidak 
+( jika tidak maka pilihan rental mobil dan harga nya )
+( jika iya memberikan menu makanan / minuman )
+
+# jika bisa tracking progress di tambahkan 
+- pencetakan nota bayar 
+(biodata customer, service pa saja yang di lakukan, nama montir, biaya service dan rental mobil jika di perlukan, estimasi waktu service)
