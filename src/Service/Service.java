@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Service;
+import DataBase.*;
 
 /**
  *
@@ -16,6 +17,7 @@ public class Service extends javax.swing.JFrame {
      */
     public Service() {
         initComponents();
+        setLocationRelativeTo(this);
     }
 
     /**
@@ -360,7 +362,8 @@ public class Service extends javax.swing.JFrame {
     }//GEN-LAST:event_KMActionPerformed
 
     private void SimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SimpanActionPerformed
-        // TODO add your handling code here:
+        new DataBase().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_SimpanActionPerformed
 
     private void ResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetActionPerformed
