@@ -18,7 +18,7 @@ public class koneksi {
     private static Connection MySQLConfig;
     public static Connection configDB() throws SQLException{
         try{
-            String url="jdbc:mysql://localhost:3306/mhs";
+            String url="jdbc:mysql://localhost:3306/tugasakhir";
             String user = "root";
             String pass = "";
             
