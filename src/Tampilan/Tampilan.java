@@ -30,7 +30,8 @@ public class Tampilan extends javax.swing.JFrame {
     private void initComponents() {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
-        Dis_Masuk = new javax.swing.JButton();
+        Dis_Login = new javax.swing.JButton();
+        Dis_Exit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -38,30 +39,44 @@ public class Tampilan extends javax.swing.JFrame {
         jDesktopPane1.setForeground(new java.awt.Color(255, 255, 255));
         jDesktopPane1.setPreferredSize(new java.awt.Dimension(800, 500));
 
-        Dis_Masuk.setText("Masuk");
-        Dis_Masuk.addActionListener(new java.awt.event.ActionListener() {
+        Dis_Login.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+        Dis_Login.setText("Login");
+        Dis_Login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Dis_MasukActionPerformed(evt);
+                Dis_LoginActionPerformed(evt);
             }
         });
 
-        jDesktopPane1.setLayer(Dis_Masuk, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        Dis_Exit.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+        Dis_Exit.setText("Exit");
+        Dis_Exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Dis_ExitActionPerformed(evt);
+            }
+        });
+
+        jDesktopPane1.setLayer(Dis_Login, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(Dis_Exit, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                .addContainerGap(697, Short.MAX_VALUE)
-                .addComponent(Dis_Masuk)
-                .addGap(32, 32, 32))
+                .addContainerGap(587, Short.MAX_VALUE)
+                .addComponent(Dis_Login)
+                .addGap(50, 50, 50)
+                .addComponent(Dis_Exit)
+                .addGap(21, 21, 21))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                .addContainerGap(462, Short.MAX_VALUE)
-                .addComponent(Dis_Masuk)
-                .addContainerGap())
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addContainerGap(446, Short.MAX_VALUE)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Dis_Exit)
+                    .addComponent(Dis_Login))
+                .addGap(23, 23, 23))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -78,10 +93,14 @@ public class Tampilan extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void Dis_MasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Dis_MasukActionPerformed
+    private void Dis_LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Dis_LoginActionPerformed
         new Login().setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_Dis_MasukActionPerformed
+    }//GEN-LAST:event_Dis_LoginActionPerformed
+
+    private void Dis_ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Dis_ExitActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_Dis_ExitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -120,7 +139,8 @@ public class Tampilan extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Dis_Masuk;
+    private javax.swing.JButton Dis_Exit;
+    private javax.swing.JButton Dis_Login;
     private javax.swing.JDesktopPane jDesktopPane1;
     // End of variables declaration//GEN-END:variables
 }
