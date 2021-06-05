@@ -10,6 +10,8 @@ import Service.*;
  * @author GF63
  */
 public class DataBase extends javax.swing.JFrame {
+    
+        
 
     /**
      * Creates new form DataBase

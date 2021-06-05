@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Service;
-import Koneksi.*;
+import koneksi.*;
 import java.sql.Connection;
 import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
@@ -27,7 +27,7 @@ public class montir extends javax.swing.JFrame {
         try{
             int no = 1;
             String sql = "SELECT * FROM montir";
-            java.sql.Connection conn = (Connection)Koneksi.configDB();
+            java.sql.Connection conn = (Connection)koneksi.configDB();
             java.sql.Statement stm= conn.createStatement();
             java.sql.ResultSet res = stm.executeQuery(sql);
             
