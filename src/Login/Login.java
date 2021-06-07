@@ -6,7 +6,15 @@
 package Login;
 import Tampilan.*;
 import Service.*;
+import DataBase.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.naming.spi.DirStateFactory.Result;
 import javax.swing.JOptionPane;
+import koneksi.koneksi;
 
 
 /**
@@ -162,18 +170,22 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void MasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MasukActionPerformed
-        String username = Username.getText();
-        String password = Passw.getText();
-        
-        
-        if(username.contains("admin")&&(password.contains("admin"))){
-            new Service().setVisible(true);
-            this.dispose();
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "Username atau Password Salah !");
-            Username.setText(null);
-            Passw.setText(null);
+
+        try{
+            Statement stat = (Statement)koneksi.configDB().createStatement();
+            ResultSet rs = stat.executeQuery("SELECT * FROM login where username = '"+Username.getText()+"'");
+            if(rs.next()){
+                if(Passw.getText().equals(rs.getString("password"))){
+                    new DataBase().setVisible(true);
+                    this.dispose();
+                }else{
+                    JOptionPane.showMessageDialog(null, "Username atau Password Salah !");
+                    Username.setText(null);
+                    Passw.setText(null);
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         
