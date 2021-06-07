@@ -6,7 +6,6 @@
 package Login;
 import Tampilan.*;
 import Service.*;
-import DataBase.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -176,7 +175,7 @@ public class Login extends javax.swing.JFrame {
             ResultSet rs = stat.executeQuery("SELECT * FROM login where username = '"+Username.getText()+"'");
             if(rs.next()){
                 if(Passw.getText().equals(rs.getString("password"))){
-                    new DataBase().setVisible(true);
+                    new Service().setVisible(true);
                     this.dispose();
                 }else{
                     JOptionPane.showMessageDialog(null, "Username atau Password Salah !");
