@@ -5,20 +5,66 @@
  */
 package DataBase;
 import Service.*;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.naming.spi.DirStateFactory.Result;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
+import koneksi.*;
 /**
  *
  * @author GF63
  */
 public class DataBase extends javax.swing.JFrame {
-    
-        
 
     /**
      * Creates new form DataBase
      */
+    private void tampilData(){
+        int no = 0;
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("NO");
+        model.addColumn("ID");
+        model.addColumn("Nama");
+        model.addColumn("Alamat");
+        model.addColumn("NO HP");
+        model.addColumn("Tipe Mobil");
+        model.addColumn("NOPOL");
+        model.addColumn("Status Sewa");
+        model.addColumn("Km");
+        model.addColumn("Keluhan");
+        model.addColumn("Nama Montir");
+        
+        try{
+            no++;
+            String sql = "SELECT a.id_data,a.nama,a.alamat,a.no_hp,a.tipe_mobil,a.nopol,a.status_sewa,"
+                    + "a.km,a.keluhan,b.nama_montir FROM biodata a LEFT JOIN montir b ON a.id_montir = b.id_montir";
+            java.sql.Connection conn = (Connection)koneksi.configDB();
+            java.sql.Statement stm= conn.createStatement();
+            java.sql.ResultSet res = stm.executeQuery(sql);
+            
+            while(res.next()){
+                model.addRow(new Object[]{no++,res.getString(1),res.getString(2),res.getString(3),res.getString(4),res.getString(5),
+                res.getString(6),res.getString(7),res.getString(8),res.getString(9),res.getString(10)});
+            }
+            tabeldata.setModel(model);
+            
+            
+            
+        } catch (SQLException e){
+            System.out.println("Error : "+ e.getMessage());
+        }
+        TableColumnModel tcm = tabeldata.getColumnModel();
+        tcm.removeColumn( tcm.getColumn(1) );
+        tcm.removeColumn( tcm.getColumn(2) );
+        
+    }
+      
     public DataBase() {
         initComponents();
-        setLocationRelativeTo(this);
+        tampilData();
+//        setLocationRelativeTo(this);
     }
 
     /**
@@ -31,7 +77,7 @@ public class DataBase extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabeldata = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -39,7 +85,7 @@ public class DataBase extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabeldata.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -47,7 +93,7 @@ public class DataBase extends javax.swing.JFrame {
                 "ID", "Nama", "Alamat", "No HP", "Tipe Mobil", "Nopol", "Status sewa", "KM", "Keluhan", "ID Montir"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabeldata);
 
         jButton1.setText("Update");
 
@@ -102,7 +148,7 @@ public class DataBase extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -154,6 +200,6 @@ public class DataBase extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tabeldata;
     // End of variables declaration//GEN-END:variables
 }

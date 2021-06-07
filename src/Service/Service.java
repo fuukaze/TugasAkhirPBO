@@ -390,6 +390,8 @@ public class Service extends javax.swing.JFrame {
     private void SimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SimpanActionPerformed
         new DataBase().setVisible(true);
         this.dispose();
+        
+        
     }//GEN-LAST:event_SimpanActionPerformed
 
     private void ResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetActionPerformed

@@ -4,18 +4,16 @@
  * and open the template in the editor.
  */
 package koneksi;
-import javax.swing.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.ResultSet;
 
 /**
  *
  * @author kahfi
  */
 public class koneksi {
-    private static Connection MySQLConfig;
+    static Connection MySQLConfig;
     public static Connection configDB() throws SQLException{
         try{
             String url="jdbc:mysql://localhost:3306/tugasakhir";
@@ -29,5 +27,5 @@ public class koneksi {
         }
         return MySQLConfig;
     }
-    
+
 }
