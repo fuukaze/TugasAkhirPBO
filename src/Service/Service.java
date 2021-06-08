@@ -5,6 +5,9 @@
  */
 package Service;
 import DataBase.*;
+import java.sql.Connection;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import koneksi.*;
 
 /**
@@ -388,6 +391,17 @@ public class Service extends javax.swing.JFrame {
     }//GEN-LAST:event_KMActionPerformed
 
     private void SimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SimpanActionPerformed
+        try {
+            String sql = "INSERT INTO biodata VALUES('"+ID.getText()+"')";
+            java.sql.Connection conn = (Connection) koneksi.configDB();
+            java.sql.PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.execute();
+            JOptionPane.showMessageDialog(null, "Tersimpan");   
+        }
+        catch (SQLException e){
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+        
         new DataBase().setVisible(true);
         this.dispose();
         
