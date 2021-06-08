@@ -71,11 +71,11 @@ public class Service extends javax.swing.JFrame {
         Keluhan = new javax.swing.JTextArea();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        D_montir = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
-        jComboBox2 = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         Bio = new javax.swing.JTextArea();
+        montir = new javax.swing.JTextField();
+        sewa = new javax.swing.JTextField();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -182,13 +182,6 @@ public class Service extends javax.swing.JFrame {
 
         jLabel15.setText("Sewa Mobil");
 
-        D_montir.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bp. Bambang", "Bp. Mansyur", "Bp. Nanang" }));
-        D_montir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                D_montirActionPerformed(evt);
-            }
-        });
-
         jButton1.setText("cek rekomendasi servis");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -196,8 +189,7 @@ public class Service extends javax.swing.JFrame {
             }
         });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ya", "Tidak" }));
-
+        Bio.setEditable(false);
         Bio.setColumns(20);
         Bio.setRows(5);
         jScrollPane2.setViewportView(Bio);
@@ -249,13 +241,13 @@ public class Service extends javax.swing.JFrame {
                             .addComponent(Tipe_mobil, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel11)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(Alamat, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(35, 35, 35)
                                         .addComponent(jLabel15)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(sewa))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(ID, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -267,10 +259,10 @@ public class Service extends javax.swing.JFrame {
                                                 .addComponent(jLabel13)
                                                 .addGap(22, 22, 22)
                                                 .addComponent(Nopol, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                                 .addComponent(jLabel4)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(D_montir, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                                .addGap(18, 18, 18)
+                                                .addComponent(montir, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
@@ -328,13 +320,13 @@ public class Service extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(91, 91, 91)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(D_montir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
+                            .addComponent(jLabel4)
+                            .addComponent(montir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel15)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                            .addComponent(sewa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel9)
@@ -349,7 +341,7 @@ public class Service extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Reset)
                             .addComponent(Simpan))
@@ -391,9 +383,11 @@ public class Service extends javax.swing.JFrame {
     }//GEN-LAST:event_KMActionPerformed
 
     private void SimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SimpanActionPerformed
+        String sql = "INSERT INTO biodata(`id_data`, `nama`, `alamat`, `no_hp`, `tipe_mobil`, `nopol`, `status_sewa`, `km`, `keluhan`, `id_montir`) "
+                    + "VALUES('"+ID.getText()+"','"+Nama.getText()+"','"+Alamat.getText()+"','"+No_hp.getText()+"','"+Tipe_mobil.getText()+"','"+Nopol.getText()+"','"+sewa.getText()+"',"
+                + "'"+KM.getText()+"','"+Keluhan.getText()+"','"+montir.getText()+"')";
         try {
-            String sql = "INSERT INTO biodata VALUES('"+ID.getText()+"')";
-            java.sql.Connection conn = (Connection) koneksi.configDB();
+            java.sql.Connection conn = (Connection)koneksi.configDB();
             java.sql.PreparedStatement pstm = conn.prepareStatement(sql);
             pstm.execute();
             JOptionPane.showMessageDialog(null, "Tersimpan");   
@@ -411,27 +405,6 @@ public class Service extends javax.swing.JFrame {
     private void ResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ResetActionPerformed
-
-    private void D_montirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_D_montirActionPerformed
-        switch(D_montir.getSelectedIndex()){
-            case 0 :
-                Bio.setText("Nama : Bp. Bambang"
-                        +'\n'+"Alamat : Rembang"
-                        +'\n'+ "No HP : 085632569");
-                break;
-            case 1 :
-                Bio.setText("Nama : Bp. Mansyur"
-                        +'\n'+"Alamat : Batang"
-                        +'\n'+ "No HP : 085632569");
-                break;
-            default:
-                Bio.setText("Nama : Bp. Nanang"
-                        +'\n'+"Alamat : Pati"
-                        +'\n'+ "No HP : 085632569");
-                break;
-                
-        }  
-    }//GEN-LAST:event_D_montirActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -475,7 +448,6 @@ public class Service extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Alamat;
     private javax.swing.JTextArea Bio;
-    private javax.swing.JComboBox<String> D_montir;
     private javax.swing.JTextField ID;
     private javax.swing.JLabel Jlabel5;
     private javax.swing.JTextField KM;
@@ -488,7 +460,6 @@ public class Service extends javax.swing.JFrame {
     private javax.swing.JTextField Tipe_mobil;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -507,5 +478,7 @@ public class Service extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField montir;
+    private javax.swing.JTextField sewa;
     // End of variables declaration//GEN-END:variables
 }
