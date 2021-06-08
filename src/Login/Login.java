@@ -178,11 +178,15 @@ public class Login extends javax.swing.JFrame {
                     new Service().setVisible(true);
                     this.dispose();
                 }else{
-                    JOptionPane.showMessageDialog(null, "Username atau Password Salah !");
+                    JOptionPane.showMessageDialog(null, "Password Salah !");
                     Username.setText(null);
                     Passw.setText(null);
                 }
-            }
+            }else{
+                    JOptionPane.showMessageDialog(null, "Username Salah !");
+                    Username.setText(null);
+                    Passw.setText(null);
+                }
         } catch (SQLException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
