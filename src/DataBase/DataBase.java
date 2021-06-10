@@ -5,6 +5,7 @@
  */
 package DataBase;
 import Service.*;
+import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -83,6 +84,7 @@ public class DataBase extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         btn_hapus = new javax.swing.JButton();
         btn_kembali = new javax.swing.JButton();
+        tampilhapus = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -94,6 +96,11 @@ public class DataBase extends javax.swing.JFrame {
                 "ID", "Nama", "Alamat", "No HP", "Tipe Mobil", "Nopol", "Status sewa", "KM", "Keluhan", "ID Montir"
             }
         ));
+        tabeldata.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabeldataMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabeldata);
 
         btn_edit.setText("Update");
@@ -124,14 +131,26 @@ public class DataBase extends javax.swing.JFrame {
             }
         });
 
+        tampilhapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tampilhapusActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(btn_kembali)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(btn_kembali)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tampilhapus, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_hapus)
                     .addGroup(layout.createSequentialGroup()
@@ -152,7 +171,9 @@ public class DataBase extends javax.swing.JFrame {
                             .addComponent(btn_edit)
                             .addComponent(jButton2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btn_hapus))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btn_hapus)
+                            .addComponent(tampilhapus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(btn_kembali))
                 .addContainerGap(54, Short.MAX_VALUE))
         );
@@ -170,22 +191,39 @@ public class DataBase extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_kembaliActionPerformed
 
     private void btn_hapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_hapusActionPerformed
-        DefaultTableModel Tdata = (DefaultTableModel) tabeldata.getModel();
-         if( tabeldata.getSelectedRow() ==-1){
-             if( tabeldata.getRowCount()==0){
-                 JOptionPane.showMessageDialog(null, "Tidak ada data ! ");
-             }else {
-                 JOptionPane.showMessageDialog(null, "Silahkan Pilih Data ");
-             }
-         }else{
-             Tdata.removeRow( tabeldata.getSelectedRow());
-             JOptionPane.showMessageDialog(null, "Data Berhasil Dihapus");   
-         }
+        DefaultTableModel model = (DefaultTableModel) tabeldata.getModel();
+        int row = tabeldata.getSelectedRow();
+        if(row>=0){
+            int ok=JOptionPane.showConfirmDialog(null, "Yakin Mau Hapus?","Konfirmasi",JOptionPane.YES_NO_OPTION);
+            if(ok==0){
+                try{
+                    String sql = "DELETE FROM biodata WHERE id_data='" + tampilhapus.getText()+ "'";
+                    java.sql.Connection conn = (Connection)koneksi.configDB();
+                    java.sql.PreparedStatement pstm= conn.prepareStatement(sql);
+                    pstm.execute();
+                    JOptionPane.showMessageDialog(null, "Hapus Data Berhasil..");
+                } catch (HeadlessException | SQLException e){
+                    JOptionPane.showMessageDialog(this, e.getMessage());
+                }
+            }
+        }
+        tampilData();
     }//GEN-LAST:event_btn_hapusActionPerformed
 
     private void btn_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_editActionPerformed
+
+    private void tampilhapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tampilhapusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tampilhapusActionPerformed
+
+    private void tabeldataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabeldataMouseClicked
+        // TODO add your handling code here:
+        int baris = tabeldata.rowAtPoint(evt.getPoint());
+        String id_montir = tabeldata.getModel().getValueAt(baris, 1).toString();
+        tampilhapus.setText(id_montir);
+    }//GEN-LAST:event_tabeldataMouseClicked
 
     /**
      * @param args the command line arguments
@@ -230,5 +268,6 @@ public class DataBase extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabeldata;
+    private javax.swing.JTextField tampilhapus;
     // End of variables declaration//GEN-END:variables
 }
