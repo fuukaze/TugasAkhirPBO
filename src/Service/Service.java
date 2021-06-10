@@ -6,6 +6,7 @@
 package Service;
 import DataBase.*;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import koneksi.*;
@@ -26,11 +27,19 @@ public class Service extends javax.swing.JFrame {
     }
     
     private void combo(){
-    //D_montir.removeAllItems();
-    //D_montir.addItem(null);
-    //D_montir.addItem("Bp. Bambang");
-    //D_montir.addItem("Bp. Mansyur");
-    //D_montir.addItem("Bp. Nanang");    
+    try {
+            String query = "SELECT * FROM montir";
+            java.sql.Connection conn = (Connection)koneksi.configDB();
+            java.sql.Statement stm = conn.createStatement();
+            ResultSet rs=stm.executeQuery(query);
+            
+            while(rs.next()){
+                montir.addItem(rs.getString("id_montir"));
+            }
+            
+            
+        } catch (Exception e) {
+        }
     }
 
     /**
@@ -74,8 +83,8 @@ public class Service extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         Bio = new javax.swing.JTextArea();
-        montir = new javax.swing.JTextField();
-        sewa = new javax.swing.JTextField();
+        montir = new javax.swing.JComboBox<>();
+        sewa = new javax.swing.JComboBox<>();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -194,6 +203,15 @@ public class Service extends javax.swing.JFrame {
         Bio.setRows(5);
         jScrollPane2.setViewportView(Bio);
 
+        montir.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PILIH MONTIR" }));
+        montir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                montirActionPerformed(evt);
+            }
+        });
+
+        sewa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MAU SEWA?", "Ya", "Tidak" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -247,22 +265,23 @@ public class Service extends javax.swing.JFrame {
                                         .addGap(35, 35, 35)
                                         .addComponent(jLabel15)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(sewa))
+                                        .addComponent(sewa, 0, 171, Short.MAX_VALUE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(ID, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(Nama, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(No_hp, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(37, 37, 37)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                                 .addComponent(jLabel13)
-                                                .addGap(22, 22, 22)
-                                                .addComponent(Nopol, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                .addGap(22, 22, 22))
+                                            .addGroup(layout.createSequentialGroup()
                                                 .addComponent(jLabel4)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(montir, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                                .addGap(18, 18, 18)))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(Nopol, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
+                                            .addComponent(montir, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
@@ -326,7 +345,7 @@ public class Service extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel15)
                             .addComponent(sewa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel9)
@@ -341,7 +360,7 @@ public class Service extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Reset)
                             .addComponent(Simpan))
@@ -384,8 +403,9 @@ public class Service extends javax.swing.JFrame {
 
     private void SimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SimpanActionPerformed
         String sql = "INSERT INTO biodata(`id_data`, `nama`, `alamat`, `no_hp`, `tipe_mobil`, `nopol`, `status_sewa`, `km`, `keluhan`, `id_montir`) "
-                    + "VALUES('"+ID.getText()+"','"+Nama.getText()+"','"+Alamat.getText()+"','"+No_hp.getText()+"','"+Tipe_mobil.getText()+"','"+Nopol.getText()+"','"+sewa.getText()+"',"
-                + "'"+KM.getText()+"','"+Keluhan.getText()+"','"+montir.getText()+"')";
+                    + "VALUES('"+ID.getText()+"','"+Nama.getText()+"','"+Alamat.getText()+"','"+No_hp.getText()+"','"+Tipe_mobil.getText()+"','"+Nopol.getText()+"','"+sewa.getSelectedItem()+"',"
+                + "'"+KM.getText()+"','"+Keluhan.getText()+"','"+montir.getSelectedItem()+"')";
+        
         try {
             java.sql.Connection conn = (Connection)koneksi.configDB();
             java.sql.PreparedStatement pstm = conn.prepareStatement(sql);
@@ -395,10 +415,9 @@ public class Service extends javax.swing.JFrame {
         catch (SQLException e){
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
-        
         new DataBase().setVisible(true);
         this.dispose();
-        
+        combo();
         
     }//GEN-LAST:event_SimpanActionPerformed
 
@@ -409,6 +428,29 @@ public class Service extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void montirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_montirActionPerformed
+        // TODO add your handling code here:
+        try {
+            String query = "SELECT * FROM montir";
+            java.sql.Connection conn = (Connection)koneksi.configDB();
+            java.sql.Statement stm = conn.createStatement();
+            ResultSet rs=stm.executeQuery(query);
+            while(rs.next()){
+                String id_montir = rs.getString("id_montir");
+                String nama_montir = rs.getString("nama_montir");
+                String skill = rs.getString("skill");
+                
+                Bio.setText(
+                    "\n ID \t = "+(id_montir)+
+                    "\n NAMA \t = "+(nama_montir)+
+                    "\n Keahlian \t = "+(skill)
+                );
+            }
+        } catch (Exception e) {
+        }
+        
+    }//GEN-LAST:event_montirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -478,7 +520,7 @@ public class Service extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField montir;
-    private javax.swing.JTextField sewa;
+    private javax.swing.JComboBox<String> montir;
+    private javax.swing.JComboBox<String> sewa;
     // End of variables declaration//GEN-END:variables
 }

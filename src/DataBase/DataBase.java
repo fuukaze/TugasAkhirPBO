@@ -7,6 +7,7 @@ package DataBase;
 import Service.*;
 import java.awt.HeadlessException;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.naming.spi.DirStateFactory.Result;
@@ -23,6 +24,23 @@ public class DataBase extends javax.swing.JFrame {
     /**
      * Creates new form DataBase
      */
+    private void comboMontir(){
+        try {
+            String query = "SELECT * FROM montir";
+            java.sql.Connection conn = (Connection)koneksi.configDB();
+            java.sql.PreparedStatement stat = conn.prepareStatement(query);
+            ResultSet rs = stat.executeQuery();
+            
+            while(rs.next()){
+                montir.addItem(rs.getString("id_montir"));
+            }
+            rs.last();
+            int jumlah = rs.getRow();
+            rs.first();
+        } catch (Exception e) {
+        }
+    }
+    
     private void tampilData(){
         int no = 0;
         DefaultTableModel model = new DefaultTableModel();
@@ -67,7 +85,6 @@ public class DataBase extends javax.swing.JFrame {
         initComponents();
         tampilData();   
         setLocationRelativeTo(this);
-        
     }
 
     /**
@@ -90,10 +107,10 @@ public class DataBase extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        keluhan = new javax.swing.JTextArea();
+        montir = new javax.swing.JComboBox<>();
+        sewa = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -140,6 +157,7 @@ public class DataBase extends javax.swing.JFrame {
             }
         });
 
+        tampilhapus.setEditable(false);
         tampilhapus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tampilhapusActionPerformed(evt);
@@ -155,9 +173,18 @@ public class DataBase extends javax.swing.JFrame {
 
         jLabel4.setText("Montir");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        keluhan.setColumns(20);
+        keluhan.setRows(5);
+        jScrollPane2.setViewportView(keluhan);
+
+        montir.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Montir" }));
+        montir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                montirActionPerformed(evt);
+            }
+        });
+
+        sewa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Sewa", "Ya", "Tidak" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -180,18 +207,19 @@ public class DataBase extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel1)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel3)
-                            .addGap(18, 18, 18)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(215, 215, 215)
-                        .addComponent(btn_edit)))
+                        .addComponent(btn_edit))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(jLabel4)
+                            .addGap(18, 18, 18)
+                            .addComponent(montir, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18)
+                                .addComponent(sewa, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -213,12 +241,12 @@ public class DataBase extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
+                            .addComponent(jLabel3)
+                            .addComponent(sewa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(montir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -263,6 +291,19 @@ public class DataBase extends javax.swing.JFrame {
 
     private void btn_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editActionPerformed
         // TODO add your handling code here:
+        String sql = "UPDATE biodata SET status_sewa = '"+sewa.getSelectedItem()+"', id_montir = '"+montir.getSelectedItem()+"', "
+                + "keluhan = '"+keluhan.getText()+"' WHERE id_data = '"+tampilhapus.getText()+"'";
+        try {
+            java.sql.Connection conn = (Connection)koneksi.configDB();
+            java.sql.PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.execute();
+            JOptionPane.showMessageDialog(null, "Tersimpan");   
+        }
+        catch (SQLException e){
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+        new DataBase().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btn_editActionPerformed
 
     private void tampilhapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tampilhapusActionPerformed
@@ -272,9 +313,18 @@ public class DataBase extends javax.swing.JFrame {
     private void tabeldataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabeldataMouseClicked
         // TODO add your handling code here:
         int baris = tabeldata.rowAtPoint(evt.getPoint());
-        String id_montir = tabeldata.getModel().getValueAt(baris, 1).toString();
-        tampilhapus.setText(id_montir);
+        String id_data = tabeldata.getModel().getValueAt(baris, 1).toString();
+        tampilhapus.setText(id_data);
+        sewa.setSelectedItem(tabeldata.getValueAt(baris, 5).toString());
+        montir.setSelectedItem(tabeldata.getValueAt(baris, 8).toString());
+        keluhan.setText(tabeldata.getValueAt(baris, 7).toString());
+        comboMontir();
     }//GEN-LAST:event_tabeldataMouseClicked
+
+    private void montirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_montirActionPerformed
+        // TODO add your handling code here:
+        comboMontir();
+    }//GEN-LAST:event_montirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -323,9 +373,9 @@ public class DataBase extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextArea keluhan;
+    private javax.swing.JComboBox<String> montir;
+    private javax.swing.JComboBox<String> sewa;
     private javax.swing.JTable tabeldata;
     private javax.swing.JTextField tampilhapus;
     // End of variables declaration//GEN-END:variables
