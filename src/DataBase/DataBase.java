@@ -280,13 +280,13 @@ public class DataBase extends javax.swing.JFrame {
                     java.sql.Connection conn = (Connection)koneksi.configDB();
                     java.sql.PreparedStatement pstm= conn.prepareStatement(sql);
                     pstm.execute();
+                    tampilData();
                     JOptionPane.showMessageDialog(null, "Hapus Data Berhasil..");
                 } catch (HeadlessException | SQLException e){
                     JOptionPane.showMessageDialog(this, e.getMessage());
                 }
             }
         }
-        tampilData();
     }//GEN-LAST:event_btn_hapusActionPerformed
 
     private void btn_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editActionPerformed
@@ -297,6 +297,7 @@ public class DataBase extends javax.swing.JFrame {
             java.sql.Connection conn = (Connection)koneksi.configDB();
             java.sql.PreparedStatement pstm = conn.prepareStatement(sql);
             pstm.execute();
+            tampilData();
             JOptionPane.showMessageDialog(null, "Tersimpan");   
         }
         catch (SQLException e){
