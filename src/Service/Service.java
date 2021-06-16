@@ -448,8 +448,7 @@ public class Service extends javax.swing.JFrame {
 
     private void btn_lihatmontirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_lihatmontirActionPerformed
         // TODO add your handling code here:
-        new montir().setVisible(true);
-//        this.dispose();        
+        new montir().setVisible(true);       
     }//GEN-LAST:event_btn_lihatmontirActionPerformed
 
     /**
