@@ -232,7 +232,8 @@ public class FormBeranda extends javax.swing.JFrame {
 
     private void btn_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteActionPerformed
         // TODO add your handling code here:
-        
+        cb.delete();
+        cb.isitable();
     }//GEN-LAST:event_btn_deleteActionPerformed
 
     /**
