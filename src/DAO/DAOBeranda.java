@@ -22,7 +22,7 @@ import koneksi.koneksi;
  */
 public class DAOBeranda implements ImplementBeranda {
     Connection connection;
-    final String insert = "INSERT INTO baru (nama, no_hp)VALUES(?, ?)";
+    final String insert = "INSERT INTO baru ( nama, no_hp )VALUES(?, ?)";
     final String delete = "DELETE FROM baru WHERE no_ktp=?";
     final String update = "UPDATE baru SET nama=?, no_hp=?  WHERE no_ktp=?";
     final String select = "SELECT * FROM baru";
@@ -39,12 +39,9 @@ public class DAOBeranda implements ImplementBeranda {
         try{
             statement = connection.prepareStatement(insert);
             statement.setString(1, ml.getNama());
-            statement.setDouble(2, ml.getNo_hp());
+            statement.setInt(2, ml.getNo_hp());
             statement.executeUpdate();
-            ResultSet rs = statement.getGeneratedKeys();
-            while (rs.next()){
-                ml.setNo_ktp(rs.getInt(1));
-            }
+            
             
         }catch (SQLException ex){
             ex.printStackTrace();
@@ -84,8 +81,8 @@ public class DAOBeranda implements ImplementBeranda {
         try{
             statement = connection.prepareStatement(update);
             statement.setString(1, ml.getNama());
-            statement.setDouble(2, ml.getNo_hp());
-            statement.setDouble(3, ml.getNo_ktp());
+            statement.setInt(2, ml.getNo_hp());
+            statement.setInt(3, ml.getNo_ktp());
             statement.executeUpdate();
             
         }catch (SQLException ex){
@@ -93,7 +90,6 @@ public class DAOBeranda implements ImplementBeranda {
         } finally{
             try{
                 statement.close();
-                
             } catch(SQLException ex){
                 ex.printStackTrace();
             } 

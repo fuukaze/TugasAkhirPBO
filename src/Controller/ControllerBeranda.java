@@ -29,6 +29,7 @@ public class ControllerBeranda {
     }
     
     public void reset(){
+        frame.getTf_noktp().setText("");
         frame.getTf_nama().setText("");
         frame.getTf_nohp().setText("");
         
@@ -40,9 +41,9 @@ public class ControllerBeranda {
         frame.getTbl_beranda().setModel(mtb);
     }
     public void isifield(int row){
-        frame.getTf_noktp().setText(String.valueOf(lmb.get(row).getNama()));
+        frame.getTf_noktp().setText(String.valueOf(lmb.get(row).getNo_ktp()));
         frame.getTf_nama().setText(lmb.get(row).getNama());
-        frame.getTf_noktp().setText(String.valueOf(lmb.get(row).getNama()));
+        frame.getTf_nohp().setText(String.valueOf(lmb.get(row).getNo_hp()));
     }    
     public void insert(){
         if(!frame.getTf_nama().getText().trim().isEmpty()& !frame.getTf_nama().getText().trim().isEmpty()){
@@ -72,12 +73,13 @@ public class ControllerBeranda {
     public void update(){
         if(!frame.getTf_noktp().getText().trim().isEmpty()){
             
-            ModBeranda mb = new ModBeranda();
+            ModBeranda ml = new ModBeranda();
             
-            mb.setNama(frame.getTf_nama().getText());
-            mb.setNo_hp(Integer.valueOf(frame.getTf_nohp().getText()));
+            ml.setNama(frame.getTf_nama().getText());
+            ml.setNo_hp(Integer.valueOf(frame.getTf_nohp().getText()));
+            ml.setNo_ktp(Integer.valueOf(frame.getTf_noktp().getText()));
             
-            impberanda.update(mb);
+            impberanda.update(ml);
             JOptionPane.showMessageDialog(null, "data diperbarui"); 
         } else {
             JOptionPane.showMessageDialog(null, "Data gagal diperbarui");

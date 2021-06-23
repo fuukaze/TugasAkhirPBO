@@ -64,7 +64,6 @@ public class FormBeranda extends javax.swing.JFrame {
         btn_save = new javax.swing.JButton();
         btn_delete = new javax.swing.JButton();
         btn_update = new javax.swing.JButton();
-        btn_edit = new javax.swing.JButton();
         btn_cancel = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -111,6 +110,11 @@ public class FormBeranda extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tbl_beranda.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_berandaMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tbl_beranda);
 
         btn_save.setText("save");
@@ -128,8 +132,11 @@ public class FormBeranda extends javax.swing.JFrame {
         });
 
         btn_update.setText("update");
-
-        btn_edit.setText("edit");
+        btn_update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_updateActionPerformed(evt);
+            }
+        });
 
         btn_cancel.setText("cancel");
         btn_cancel.addActionListener(new java.awt.event.ActionListener() {
@@ -177,9 +184,8 @@ public class FormBeranda extends javax.swing.JFrame {
                                     .addComponent(tf_nohp, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btn_cancel)
                                     .addComponent(btn_delete)
-                                    .addComponent(btn_edit, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(btn_cancel, javax.swing.GroupLayout.Alignment.TRAILING))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -201,9 +207,7 @@ public class FormBeranda extends javax.swing.JFrame {
                             .addComponent(jLabel6)
                             .addComponent(cb_paket, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btn_update)
-                            .addComponent(btn_edit))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                        .addComponent(btn_cancel))
+                            .addComponent(btn_cancel)))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(tf_noktp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -221,7 +225,7 @@ public class FormBeranda extends javax.swing.JFrame {
                                     .addGap(34, 34, 34)
                                     .addComponent(jLabel4))
                                 .addComponent(jLabel3)))))
-                .addGap(18, 18, 18)
+                .addGap(18, 57, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -246,7 +250,20 @@ public class FormBeranda extends javax.swing.JFrame {
         // TODO add your handling code here:
         cb.delete();
         cb.isitable();
+        cb.reset();
     }//GEN-LAST:event_btn_deleteActionPerformed
+
+    private void tbl_berandaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_berandaMouseClicked
+        // TODO add your handling code here:
+        cb.isifield(tbl_beranda.getSelectedRow());
+    }//GEN-LAST:event_tbl_berandaMouseClicked
+
+    private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
+        // TODO add your handling code here:
+        cb.update();
+        cb.isitable();
+        cb.reset();
+    }//GEN-LAST:event_btn_updateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -297,14 +314,6 @@ public class FormBeranda extends javax.swing.JFrame {
 
     public void setBtn_delete(JButton btn_delete) {
         this.btn_delete = btn_delete;
-    }
-
-    public JButton getBtn_edit() {
-        return btn_edit;
-    }
-
-    public void setBtn_edit(JButton btn_edit) {
-        this.btn_edit = btn_edit;
     }
 
     public JButton getBtn_save() {
@@ -374,7 +383,6 @@ public class FormBeranda extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_cancel;
     private javax.swing.JButton btn_delete;
-    private javax.swing.JButton btn_edit;
     private javax.swing.JButton btn_save;
     private javax.swing.JButton btn_update;
     private javax.swing.JComboBox<String> cb_montir;
