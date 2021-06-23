@@ -6,7 +6,14 @@
 package View;
 
 import Controller.ControllerBeranda;
+import Controller.ControllerMontir;
+import Controller.ControllerPaket;
+import Model.ModMontir;
+import Model.ModPaket;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -16,12 +23,16 @@ import javax.swing.JTextField;
  */
 public class FormBeranda extends javax.swing.JFrame {
     ControllerBeranda cb;
-
+    private ControllerMontir MontirController = new ControllerMontir();
+    private ControllerPaket PaketController = new ControllerPaket();
+    
     /**
      * Creates new form FormBeranda
      */
     public FormBeranda() {
         initComponents();
+        setMontir(MontirController.getAllData());
+        setPaket(PaketController.getAllData());
         cb = new ControllerBeranda(this);
         cb.isitable();
     }
@@ -46,8 +57,8 @@ public class FormBeranda extends javax.swing.JFrame {
         tf_nohp = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cb_montir = new javax.swing.JComboBox<>();
+        cb_paket = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbl_beranda = new javax.swing.JTable();
         btn_save = new javax.swing.JButton();
@@ -85,9 +96,9 @@ public class FormBeranda extends javax.swing.JFrame {
 
         jLabel6.setText("Paket Service");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cb_montir.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cb_paket.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         tbl_beranda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -134,6 +145,7 @@ public class FormBeranda extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -156,8 +168,8 @@ public class FormBeranda extends javax.swing.JFrame {
                                             .addComponent(jLabel5))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(cb_montir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(cb_paket, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(41, 41, 41)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(btn_update, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -167,9 +179,9 @@ public class FormBeranda extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btn_cancel)
                                     .addComponent(btn_delete)
-                                    .addComponent(btn_edit, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(btn_edit, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,16 +193,16 @@ public class FormBeranda extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cb_montir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btn_save)
                             .addComponent(btn_delete))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cb_paket, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btn_update)
                             .addComponent(btn_edit))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                         .addComponent(btn_cancel))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createSequentialGroup()
@@ -343,6 +355,21 @@ public class FormBeranda extends javax.swing.JFrame {
         this.tf_noktp = tf_noktp;
     }
     
+    private void setMontir(List<ModMontir> Montir){    
+        if (Montir==null){
+            JOptionPane.showMessageDialog(this, "Data Montir gagal diambil dari database","DATABASE FAILED",JOptionPane.ERROR_MESSAGE);
+        }else{
+            cb_montir.setModel(new DefaultComboBoxModel(Montir.toArray()));
+        }
+    }
+    
+    private void setPaket(List<ModPaket> Paket){    
+        if (Paket==null){
+            JOptionPane.showMessageDialog(this, "Data Paket gagal diambil dari database","DATABASE FAILED",JOptionPane.ERROR_MESSAGE);
+        }else{
+            cb_paket.setModel(new DefaultComboBoxModel(Paket.toArray()));
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_cancel;
@@ -350,8 +377,8 @@ public class FormBeranda extends javax.swing.JFrame {
     private javax.swing.JButton btn_edit;
     private javax.swing.JButton btn_save;
     private javax.swing.JButton btn_update;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> cb_montir;
+    private javax.swing.JComboBox<String> cb_paket;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
