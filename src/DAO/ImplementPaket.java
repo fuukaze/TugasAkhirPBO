@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface ImplementPaket {
     public void insert(ModPaket mp);
-    public void update(ModPaket mm);
+    public void update(ModPaket mm); 
     public void delete(String no);
     public List<ModPaket> getAllPaket();
     public ModPaket getByID(String id_paket);

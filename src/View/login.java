@@ -5,17 +5,23 @@
  */
 package View;
 
+import Controller.ControllerLogin;
+import javax.swing.JButton;
+import javax.swing.JTextField;
+
 /**
  *
  * @author ACER NITRO
  */
 public class login extends javax.swing.JFrame {
-
+    
+    ControllerLogin CL;
     /**
      * Creates new form login
      */
     public login() {
         initComponents();
+        CL = new ControllerLogin(this);
     }
 
     /**
@@ -35,6 +41,12 @@ public class login extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jf_username.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jf_usernameActionPerformed(evt);
+            }
+        });
 
         btn_login.setText("Login");
         btn_login.addActionListener(new java.awt.event.ActionListener() {
@@ -101,12 +113,52 @@ public class login extends javax.swing.JFrame {
 
     private void btn_resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_resetActionPerformed
         // TODO add your handling code here:
+        CL.reset();
     }//GEN-LAST:event_btn_resetActionPerformed
 
     private void btn_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loginActionPerformed
         // TODO add your handling code here:
+        CL.CekLogin();
+        CL.reset();
     }//GEN-LAST:event_btn_loginActionPerformed
 
+    private void jf_usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jf_usernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jf_usernameActionPerformed
+
+    public JButton getBtn_login() {
+        return btn_login;
+    }
+
+    public void setBtn_login(JButton btn_login) {
+        this.btn_login = btn_login;
+    }
+
+    public JButton getBtn_reset() {
+        return btn_reset;
+    }
+
+    public void setBtn_reset(JButton btn_reset) {
+        this.btn_reset = btn_reset;
+    }
+
+    public JTextField getJf_pass() {
+        return jf_pass;
+    }
+
+    public void setJf_pass(JTextField jf_pass) {
+        this.jf_pass = jf_pass;
+    }
+
+    public JTextField getJf_username() {
+        return jf_username;
+    }
+
+    public void setJf_username(JTextField jf_username) {
+        this.jf_username = jf_username;
+    }
+
+    
     /**
      * @param args the command line arguments
      */
