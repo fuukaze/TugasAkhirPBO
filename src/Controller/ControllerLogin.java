@@ -31,6 +31,10 @@ public class ControllerLogin {
         frame.getJf_pass().setText(null);
     }
     
+    public void exit(){
+        System.exit(0);
+    }
+    
     public void CekLogin(){
         String InputUser = frame.getJf_username().getText();
         String InputPass = frame.getJf_pass().getText();
