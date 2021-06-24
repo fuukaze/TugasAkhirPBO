@@ -27,8 +27,8 @@ public class ControllerLogin {
     }
     
     public void reset(){
-        frame.getJf_username().setText("");
-        frame.getJf_pass().setText("");
+        frame.getJf_username().setText(null);
+        frame.getJf_pass().setText(null);
     }
     
     public void CekLogin(){
