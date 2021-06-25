@@ -14,6 +14,25 @@ public class ModBeranda {
     private int no_ktp;
     private String nama;
     private int no_hp;
+    private String alamat;
+    private String keterangan;
+
+    public String getAlamat() {
+        return alamat;
+    }
+
+    public void setAlamat(String alamat) {
+        this.alamat = alamat;
+    }
+
+    public String getKeterangan() {
+        return keterangan;
+    }
+
+    public void setKeterangan(String ket) {
+        this.keterangan = ket;
+    }
+    
 
     public int getNo_ktp() {
         return no_ktp;

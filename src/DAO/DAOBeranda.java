@@ -22,9 +22,9 @@ import koneksi.koneksi;
  */
 public class DAOBeranda implements ImplementBeranda {
     Connection connection;
-    final String insert = "INSERT INTO baru ( nama, no_hp )VALUES(?, ?)";
+    final String insert = "INSERT INTO baru ( nama, alamat, no_hp, keterangan )VALUES(?, ?, ?, ?)";
     final String delete = "DELETE FROM baru WHERE no_ktp=?";
-    final String update = "UPDATE baru SET nama=?, no_hp=?  WHERE no_ktp=?";
+    final String update = "UPDATE baru SET nama=?, alamat=?, no_hp=?, keterangan=?  WHERE no_ktp=?";
     final String select = "SELECT * FROM baru";
     final String carinama = "SELECT * FROM baru WHERE nama like ?";
 
@@ -39,7 +39,9 @@ public class DAOBeranda implements ImplementBeranda {
         try{
             statement = connection.prepareStatement(insert);
             statement.setString(1, ml.getNama());
-            statement.setInt(2, ml.getNo_hp());
+            statement.setString(2, ml.getAlamat());
+            statement.setInt(3, ml.getNo_hp());
+            statement.setString(4, ml.getKeterangan());
             statement.executeUpdate();
             
             
@@ -81,8 +83,10 @@ public class DAOBeranda implements ImplementBeranda {
         try{
             statement = connection.prepareStatement(update);
             statement.setString(1, ml.getNama());
-            statement.setInt(2, ml.getNo_hp());
-            statement.setInt(3, ml.getNo_ktp());
+            statement.setString(2, ml.getAlamat());
+            statement.setInt(3, ml.getNo_hp());
+            statement.setString(4, ml.getKeterangan());
+            statement.setInt(5, ml.getNo_ktp());
             statement.executeUpdate();
             
         }catch (SQLException ex){
@@ -109,7 +113,9 @@ public class DAOBeranda implements ImplementBeranda {
                 ModBeranda mb = new ModBeranda();
                 mb.setNo_ktp(rs.getInt("no_ktp"));
                 mb.setNama(rs.getString("nama"));
-                mb.setNo_hp(rs.getInt("no_hp"));  
+                mb.setAlamat(rs.getString("alamat"));
+                mb.setNo_hp(rs.getInt("no_hp")); 
+                mb.setKeterangan(rs.getString("keterangan"));
                 lmb.add(mb);
             }
         } catch (SQLException ex) {
@@ -131,7 +137,9 @@ public class DAOBeranda implements ImplementBeranda {
                 ModBeranda mb = new ModBeranda();
                 mb.setNo_ktp(rs.getInt("no_ktp"));
                 mb.setNama(rs.getString("nama"));
-                mb.setNo_hp(rs.getInt("no_hp"));   
+                mb.setAlamat(rs.getString("alamat"));
+                mb.setNo_hp(rs.getInt("no_hp")); 
+                mb.setKeterangan(rs.getString("keterangan"));   
                 lmb.add(mb);
             }
         } catch (SQLException ex) {

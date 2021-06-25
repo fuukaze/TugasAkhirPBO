@@ -26,7 +26,7 @@ public class ModTblBeranda extends AbstractTableModel{
 
     @Override
     public int getColumnCount() {
-        return 3;
+        return 5;
     }
 
     @Override
@@ -38,6 +38,10 @@ public class ModTblBeranda extends AbstractTableModel{
                 return lmb.get(rowIndex).getNama();    
             case 2:
                 return lmb.get(rowIndex).getNo_hp();
+            case 3:
+                return lmb.get(rowIndex).getAlamat();    
+            case 4:
+                return lmb.get(rowIndex).getKeterangan();
             default:
                 return null;
         }
@@ -52,6 +56,10 @@ public class ModTblBeranda extends AbstractTableModel{
                 return"nama";
             case 2:
                 return"no_hp";
+            case 3:
+                return"alamat";
+            case 4:
+                return"keterangan";
             default:
                 return null;
         }

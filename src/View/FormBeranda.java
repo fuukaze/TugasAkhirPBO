@@ -31,8 +31,6 @@ public class FormBeranda extends javax.swing.JFrame {
      */
     public FormBeranda() {
         initComponents();
-        setMontir(MontirController.getAllData());
-        setPaket(PaketController.getAllData());
         cb = new ControllerBeranda(this);
         cb.isitable();
     }
@@ -55,10 +53,6 @@ public class FormBeranda extends javax.swing.JFrame {
         tf_noktp = new javax.swing.JTextField();
         tf_nama = new javax.swing.JTextField();
         tf_nohp = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        cb_montir = new javax.swing.JComboBox<>();
-        cb_paket = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbl_beranda = new javax.swing.JTable();
         btn_save = new javax.swing.JButton();
@@ -66,6 +60,10 @@ public class FormBeranda extends javax.swing.JFrame {
         btn_update = new javax.swing.JButton();
         btn_cancel = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        tf_alamat = new javax.swing.JTextField();
+        tf_ket = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -91,14 +89,6 @@ public class FormBeranda extends javax.swing.JFrame {
         jLabel3.setText("Nama            :");
 
         jLabel4.setText("No HP            :");
-
-        jLabel5.setText("Montir            :");
-
-        jLabel6.setText("Paket Service :");
-
-        cb_montir.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cb_paket.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         tbl_beranda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -153,6 +143,10 @@ public class FormBeranda extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel7.setText("Tabah Data Service");
 
+        jLabel8.setText("Alamat           :");
+
+        jLabel9.setText("Keterangan   :");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -182,25 +176,22 @@ public class FormBeranda extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btn_cancel)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel6)
-                                                .addComponent(jLabel5))
-                                            .addGap(18, 18, 18)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(cb_montir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(cb_paket, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                                 .addGroup(layout.createSequentialGroup()
                                                     .addComponent(jLabel2)
                                                     .addGap(19, 19, 19))
                                                 .addGroup(layout.createSequentialGroup()
-                                                    .addComponent(jLabel4)
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jLabel8)
+                                                        .addComponent(jLabel4)
+                                                        .addComponent(jLabel9))
                                                     .addGap(18, 18, 18)))
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(tf_nohp, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(tf_noktp, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(tf_nohp, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+                                                .addComponent(tf_noktp, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+                                                .addComponent(tf_alamat)
+                                                .addComponent(tf_ket)))
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                             .addComponent(jLabel3)
                                             .addGap(19, 19, 19)
@@ -238,21 +229,20 @@ public class FormBeranda extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tf_nohp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addGap(8, 8, 8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel6))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(cb_montir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cb_paket, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                        .addComponent(tf_alamat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tf_ket, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9))))
+                .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_save)
                     .addComponent(btn_cancel))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -388,41 +378,42 @@ public class FormBeranda extends javax.swing.JFrame {
     public void setTf_noktp(JTextField tf_noktp) {
         this.tf_noktp = tf_noktp;
     }
-    
-    private void setMontir(List<ModMontir> Montir){    
-        if (Montir==null){
-            JOptionPane.showMessageDialog(this, "Data Montir gagal diambil dari database","DATABASE FAILED",JOptionPane.ERROR_MESSAGE);
-        }else{
-            cb_montir.setModel(new DefaultComboBoxModel(Montir.toArray()));
-        }
+
+    public JTextField getTf_alamat() {
+        return tf_alamat;
+    }
+
+    public void setTf_alamat(JTextField tf_alamat) {
+        this.tf_alamat = tf_alamat;
+    }
+
+    public JTextField getTf_ket() {
+        return tf_ket;
+    }
+
+    public void setTf_ket(JTextField tf_ket) {
+        this.tf_ket = tf_ket;
     }
     
-    private void setPaket(List<ModPaket> Paket){    
-        if (Paket==null){
-            JOptionPane.showMessageDialog(this, "Data Paket gagal diambil dari database","DATABASE FAILED",JOptionPane.ERROR_MESSAGE);
-        }else{
-            cb_paket.setModel(new DefaultComboBoxModel(Paket.toArray()));
-        }
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_cancel;
     private javax.swing.JButton btn_delete;
     private javax.swing.JButton btn_save;
     private javax.swing.JButton btn_update;
-    private javax.swing.JComboBox<String> cb_montir;
-    private javax.swing.JComboBox<String> cb_paket;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable tbl_beranda;
+    private javax.swing.JTextField tf_alamat;
+    private javax.swing.JTextField tf_ket;
     private javax.swing.JTextField tf_nama;
     private javax.swing.JTextField tf_nohp;
     private javax.swing.JTextField tf_noktp;
