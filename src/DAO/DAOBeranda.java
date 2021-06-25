@@ -22,7 +22,7 @@ import koneksi.koneksi;
  */
 public class DAOBeranda implements ImplementBeranda {
     Connection connection;
-    final String insert = "INSERT INTO baru ( nama, alamat, no_hp, keterangan )VALUES(?, ?, ?, ?)";
+    final String insert = "INSERT INTO baru (nama, alamat, no_hp, keterangan)VALUES(?, ?, ?, ?)";
     final String delete = "DELETE FROM baru WHERE no_ktp=?";
     final String update = "UPDATE baru SET nama=?, alamat=?, no_hp=?, keterangan=?  WHERE no_ktp=?";
     final String select = "SELECT * FROM baru";

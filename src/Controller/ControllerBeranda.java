@@ -32,7 +32,8 @@ public class ControllerBeranda {
         frame.getTf_noktp().setText("");
         frame.getTf_nama().setText("");
         frame.getTf_nohp().setText("");
-        
+        frame.getTf_alamat().setText("");
+        frame.getTf_ket().setText("");
     }
     
     public void isitable(){
@@ -44,13 +45,17 @@ public class ControllerBeranda {
         frame.getTf_noktp().setText(String.valueOf(lmb.get(row).getNo_ktp()));
         frame.getTf_nama().setText(lmb.get(row).getNama());
         frame.getTf_nohp().setText(String.valueOf(lmb.get(row).getNo_hp()));
+        frame.getTf_alamat().setText(lmb.get(row).getNama());
+        frame.getTf_ket().setText(lmb.get(row).getNama());
     }    
     public void insert(){
         if(!frame.getTf_nama().getText().trim().isEmpty()& !frame.getTf_nama().getText().trim().isEmpty()){
             ModBeranda mb = new ModBeranda();
             
             mb.setNama(frame.getTf_nama().getText());
+            mb.setAlamat(frame.getTf_alamat().getText());
             mb.setNo_hp(Integer.valueOf(frame.getTf_nohp().getText()));
+            mb.setKeterangan(frame.getTf_ket().getText());
             
             impberanda.insert(mb);
             JOptionPane.showMessageDialog(null, "Data disimpan");
@@ -78,6 +83,8 @@ public class ControllerBeranda {
             ml.setNama(frame.getTf_nama().getText());
             ml.setNo_hp(Integer.valueOf(frame.getTf_nohp().getText()));
             ml.setNo_ktp(Integer.valueOf(frame.getTf_noktp().getText()));
+            ml.setAlamat(frame.getTf_alamat().getText());
+            ml.setKeterangan(frame.getTf_ket().getText());
             
             impberanda.update(ml);
             JOptionPane.showMessageDialog(null, "data diperbarui"); 

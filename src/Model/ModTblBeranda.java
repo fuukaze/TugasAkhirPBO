@@ -35,11 +35,11 @@ public class ModTblBeranda extends AbstractTableModel{
             case 0:
                 return lmb.get(rowIndex).getNo_ktp();
             case 1:
-                return lmb.get(rowIndex).getNama();    
+                return lmb.get(rowIndex).getNama();
             case 2:
-                return lmb.get(rowIndex).getNo_hp();
+                return lmb.get(rowIndex).getAlamat();   
             case 3:
-                return lmb.get(rowIndex).getAlamat();    
+                return lmb.get(rowIndex).getNo_hp(); 
             case 4:
                 return lmb.get(rowIndex).getKeterangan();
             default:
@@ -55,9 +55,9 @@ public class ModTblBeranda extends AbstractTableModel{
             case 1:
                 return"nama";
             case 2:
-                return"no_hp";
-            case 3:
                 return"alamat";
+            case 3:
+                return"no_hp";
             case 4:
                 return"keterangan";
             default:

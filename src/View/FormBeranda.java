@@ -6,10 +6,6 @@
 package View;
 
 import Controller.ControllerBeranda;
-import Controller.ControllerMontir;
-import Controller.ControllerPaket;
-import Model.ModMontir;
-import Model.ModPaket;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -23,8 +19,6 @@ import javax.swing.JTextField;
  */
 public class FormBeranda extends javax.swing.JFrame {
     ControllerBeranda cb;
-    private ControllerMontir MontirController = new ControllerMontir();
-    private ControllerPaket PaketController = new ControllerPaket();
     
     /**
      * Creates new form FormBeranda
@@ -89,6 +83,8 @@ public class FormBeranda extends javax.swing.JFrame {
         jLabel3.setText("Nama            :");
 
         jLabel4.setText("No HP            :");
+
+        tf_noktp.setEditable(false);
 
         tbl_beranda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
