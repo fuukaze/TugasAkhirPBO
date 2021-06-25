@@ -10,6 +10,7 @@ import DAO.ImplementBeranda;
 import Model.ModBeranda;
 import Model.ModTblBeranda;
 import View.FormBeranda;
+import View.login;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -98,6 +99,7 @@ public class ControllerBeranda {
         ModTblBeranda mtb = new ModTblBeranda(lmb);
         frame.getTbl_beranda().setModel(mtb);
     }
+    
     
     public void carinama(){
         if(!frame.getTf_nama().getText().trim().isEmpty()){

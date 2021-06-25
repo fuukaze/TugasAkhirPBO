@@ -46,7 +46,7 @@ public class ControllerLogin {
             String DBPass = ListLogin.get(0).getPassword();
             if(InputUser.equals(DBUser) && InputPass.equals(DBPass))
             {
-                frame.dispose();
+                //frame.dispose();
                 new FormBeranda().setVisible(true);
                 System.out.println("Berhasil Login");            
             }
