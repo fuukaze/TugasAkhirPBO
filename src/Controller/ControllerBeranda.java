@@ -94,19 +94,4 @@ public class ControllerBeranda {
         }
     }
     
-    public void isiTableCariNama(){
-        lmb = impberanda.getCarinama(frame.getTf_nama().getText());
-        ModTblBeranda mtb = new ModTblBeranda(lmb);
-        frame.getTbl_beranda().setModel(mtb);
-    }
-    
-    
-    public void carinama(){
-        if(!frame.getTf_nama().getText().trim().isEmpty()){
-            impberanda.getCarinama(frame.getTf_nama().getText());
-            isiTableCariNama();
-        } else {
-            JOptionPane.showMessageDialog(null, "Data silahkan masukan nama ");
-        }
-    }
 }

@@ -123,29 +123,4 @@ public class DAOBeranda implements ImplementBeranda {
         }
         return lmb;
     }
-
-    @Override
-    public List<ModBeranda> getCarinama(String nama) {
-        List<ModBeranda> lmb = null;
-        try {
-            lmb = new ArrayList<ModBeranda>();
-            
-            PreparedStatement st = connection.prepareStatement(carinama);
-            st.setString(1, "%" + nama + "%");
-            ResultSet rs = st.executeQuery();
-            while(rs.next()){
-                ModBeranda mb = new ModBeranda();
-                mb.setNo_ktp(rs.getInt("no_ktp"));
-                mb.setNama(rs.getString("nama"));
-                mb.setAlamat(rs.getString("alamat"));
-                mb.setNo_hp(rs.getInt("no_hp")); 
-                mb.setKeterangan(rs.getString("keterangan"));   
-                lmb.add(mb);
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return lmb;
-    }
-    
 }

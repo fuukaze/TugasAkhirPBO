@@ -17,5 +17,4 @@ public interface ImplementBeranda {
     public void delete (int no_ktp);
     public void update (ModBeranda ml);
     public List<ModBeranda> getAll();
-    public List<ModBeranda> getCarinama(String nama);
 }
