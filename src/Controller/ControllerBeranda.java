@@ -46,8 +46,8 @@ public class ControllerBeranda {
         frame.getTf_noktp().setText(String.valueOf(lmb.get(row).getNo_ktp()));
         frame.getTf_nama().setText(lmb.get(row).getNama());
         frame.getTf_nohp().setText(String.valueOf(lmb.get(row).getNo_hp()));
-        frame.getTf_alamat().setText(lmb.get(row).getNama());
-        frame.getTf_ket().setText(lmb.get(row).getNama());
+        frame.getTf_alamat().setText(lmb.get(row).getAlamat());
+        frame.getTf_ket().setText(lmb.get(row).getKeterangan());
     }    
     public void insert(){
         if(!frame.getTf_nama().getText().trim().isEmpty()& !frame.getTf_nama().getText().trim().isEmpty()){
